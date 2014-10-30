@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MySourceData.h"
+
 @interface MyTableViewController : UITableViewController
+{
+    MySourceData *sourceData;
+    
+    int hilightedCellIndex;
+}
+-(int)getCellIndexByPos:(CGPoint)pos;
+-(NSString*)getCmdByIndex:(int)index;
+
+-(void)setDataByIndex:(int)index cmd:(NSString*)cmd_in arg:(NSString*)arg_in;
+-(void)setDataByIndexWithEndBlock:(int)index cmd:(NSString *)cmd_in arg:(NSString *)arg_in;
+
+-(void)setHighLighted:(int)index color:(UIColor*)color_in;
 
 @end

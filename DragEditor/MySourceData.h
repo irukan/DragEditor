@@ -8,6 +8,27 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MySourceData : NSObject
 
+@interface MySourceData : NSObject
+{
+    NSMutableArray *data;
+}
+
+@property int count;
+
+-(id) init;
+-(void)exchangeData:(int)fromIndex toIndex:(int)toIndex_in;
+-(void)inserEndBlock:(int)index cmd:(NSString*)cmd_in;
+-(void)addBlankLine :(int)num;
+
+-(void)setData:(int)index cmd:(NSString*)cmd_in arg:(NSString*)arg_in;
+-(void)setCmd:(int)index cmd:(NSString*)cmd_in;
+-(void)setArg:(int)index arg:(NSString*)arg_in;
+-(void)setScopeLevel:(int)index scopeLevel:(int)sclvl_in;
+
+-(NSString*)getCmdByIndex:(int)index;
+-(NSString*)getArgByIndex:(int)index;
+-(int)getScopeLevelByIndex:(int)index;
+
+-(void)resetScopeLevel;
 @end

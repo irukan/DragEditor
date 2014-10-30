@@ -7,6 +7,8 @@
 //
 
 #import "MyTableViewController.h"
+#import "MyCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface MyTableViewController ()
 
@@ -18,6 +20,9 @@
 {
     self = [super initWithStyle:style];
     if (self) {
+        sourceData = [[MySourceData alloc]init];
+        
+        hilightedCellIndex = -1;
         // Custom initialization
     }
     return self;
@@ -26,12 +31,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    [[self.tableView layer]setBorderColor:[[UIColor blueColor]CGColor]];
+    [[self.tableView layer]setBorderWidth:2.0];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [self.tableView setEditing:YES animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,25 +53,32 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return sourceData.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (MyCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    MyCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    // セルが作成されていないか?
+    if (!cell) { // yes
+        // セルを作成
+        
+        cell = [[MyCell alloc]init:indexPath.row indentLevel:[sourceData getScopeLevelByIndex:indexPath.row]];
+    }
     
     // Configure the cell...
+    [cell setData:[sourceData getCmdByIndex:indexPath.row] arg:[sourceData getArgByIndex:indexPath.row]];
     
+
     return cell;
 }
 
@@ -89,21 +105,40 @@
 }
 */
 
-/*
+
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
+    if(fromIndexPath.section == toIndexPath.section) { // 移動元と移動先は同じセクションです。
+        if(sourceData && toIndexPath.row < sourceData.count) {
+            [sourceData exchangeData:fromIndexPath.row toIndex:toIndexPath.row];
+            
+            //更新
+            [self resetDataAndView];
+        }
+    }
 }
-*/
 
-/*
+- (UITableViewCellEditingStyle) tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // セルが編集可能だと左側に削除アイコンが出るけど、それを表示させない
+    return UITableViewCellEditingStyleNone;
+}
+
+-(BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // editingStyleForRowAtIndexPath()でアイコン表示を無くしたけど、アイコン分の空白が残っているので左寄せする
+    return NO;
+}
+
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
-*/
+
+
 
 #pragma mark - Table view delegate
 
@@ -118,4 +153,84 @@
      */
 }
 
+-(int)getCellIndexByPos:(CGPoint)pos;
+{
+    NSArray *cells = [self.tableView visibleCells];
+    
+   int ret = -1;
+
+    for (int i=0;i<[cells count];i++)
+    {
+        MyCell *temp = [cells objectAtIndex:i];
+        if (CGRectContainsPoint(temp.realFrame, pos))
+        {
+            ret = [temp getIndex];
+            break;
+        }
+    }
+        
+    return ret;
+}
+
+-(void)setDataByIndex:(int)index cmd:(NSString*)cmd_in arg:(NSString*)arg_in
+{
+
+    // sourceDataに値登録
+    [sourceData setData:index cmd:cmd_in arg:arg_in];
+    
+    
+    if(index > (sourceData.count -2))
+    {
+        [sourceData addBlankLine:3];
+    }
+    
+    //更新
+    [self resetDataAndView];
+}
+
+-(void)setDataByIndexWithEndBlock:(int)index cmd:(NSString*)cmd_in arg:(NSString*)arg_in
+{
+    // sourceDataに値登録
+    [sourceData setData:index cmd:cmd_in arg:arg_in];
+    [sourceData inserEndBlock:index cmd:cmd_in];
+    
+    if(index > (sourceData.count -5))
+    {
+        [sourceData addBlankLine:3];
+    }
+
+    //更新
+    [self resetDataAndView];
+}
+
+-(void)setHighLighted:(int)index color:(UIColor *)color_in
+{
+    //cellが変わったら、今までhighliteしていたのを色戻す
+    if(index != hilightedCellIndex)
+    {
+        MyCell *temp = (MyCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:hilightedCellIndex inSection:0]];
+        temp.backgroundColor = [UIColor whiteColor];
+    }
+    
+    hilightedCellIndex = index;
+    // cellの表示変更
+    MyCell *temp = (MyCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+
+    temp.backgroundColor = color_in;
+
+}
+
+-(NSString*)getCmdByIndex:(int)index
+{
+    return [sourceData getCmdByIndex:index];
+}
+
+-(void)resetDataAndView
+{
+    // scopeLevelの更新
+    [sourceData resetScopeLevel];
+    
+    // 表示の更新
+    [self.tableView reloadData];
+}
 @end

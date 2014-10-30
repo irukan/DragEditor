@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
+#import "MyTableViewController.h"
+
 
 @interface ViewController : UIViewController
+{
+    AppDelegate *ad;
+    
+    MyTableViewController *tblView;
+  
+}
+@property CGFloat width;
+@property CGFloat height;
 
 @end

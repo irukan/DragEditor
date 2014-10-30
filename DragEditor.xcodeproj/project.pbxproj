@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AAB419F919FA70BE00209994 /* MyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB419F819FA70BE00209994 /* MyButton.m */; };
+		AAB419FC19FC7E0700209994 /* MySourceData.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB419FB19FC7E0700209994 /* MySourceData.m */; };
+		AAD71E3D19FE8D2400081FF2 /* MyArgInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD71E3C19FE8D2400081FF2 /* MyArgInputView.m */; };
 		AAE6453919FA680A003BD77A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE6453819FA680A003BD77A /* UIKit.framework */; };
 		AAE6453B19FA680A003BD77A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE6453A19FA680A003BD77A /* Foundation.framework */; };
 		AAE6453D19FA680A003BD77A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE6453C19FA680A003BD77A /* CoreGraphics.framework */; };
@@ -24,6 +27,8 @@
 		AAE6456219FA680A003BD77A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE6453A19FA680A003BD77A /* Foundation.framework */; };
 		AAE6456A19FA680A003BD77A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AAE6456819FA680A003BD77A /* InfoPlist.strings */; };
 		AAE6456D19FA680A003BD77A /* DragEditorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE6456C19FA680A003BD77A /* DragEditorTests.m */; };
+		AAE6457819FA6A28003BD77A /* MyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE6457719FA6A28003BD77A /* MyTableViewController.m */; };
+		AAE6457B19FA6A45003BD77A /* MyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE6457A19FA6A45003BD77A /* MyCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +42,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AAB419F719FA70BE00209994 /* MyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyButton.h; sourceTree = "<group>"; };
+		AAB419F819FA70BE00209994 /* MyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyButton.m; sourceTree = "<group>"; };
+		AAB419FA19FC7E0700209994 /* MySourceData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySourceData.h; sourceTree = "<group>"; };
+		AAB419FB19FC7E0700209994 /* MySourceData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySourceData.m; sourceTree = "<group>"; };
+		AAD71E3B19FE8D2400081FF2 /* MyArgInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyArgInputView.h; sourceTree = "<group>"; };
+		AAD71E3C19FE8D2400081FF2 /* MyArgInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyArgInputView.m; sourceTree = "<group>"; };
 		AAE6453519FA680A003BD77A /* DragEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DragEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE6453819FA680A003BD77A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AAE6453A19FA680A003BD77A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -60,6 +71,10 @@
 		AAE6456919FA680A003BD77A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AAE6456B19FA680A003BD77A /* DragEditorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragEditorTests.h; sourceTree = "<group>"; };
 		AAE6456C19FA680A003BD77A /* DragEditorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DragEditorTests.m; sourceTree = "<group>"; };
+		AAE6457619FA6A28003BD77A /* MyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewController.h; sourceTree = "<group>"; };
+		AAE6457719FA6A28003BD77A /* MyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewController.m; sourceTree = "<group>"; };
+		AAE6457919FA6A45003BD77A /* MyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCell.h; sourceTree = "<group>"; };
+		AAE6457A19FA6A45003BD77A /* MyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,8 +138,18 @@
 				AAE6454819FA680A003BD77A /* AppDelegate.m */,
 				AAE6455019FA680A003BD77A /* MainStoryboard_iPhone.storyboard */,
 				AAE6455319FA680A003BD77A /* MainStoryboard_iPad.storyboard */,
+				AAB419FA19FC7E0700209994 /* MySourceData.h */,
+				AAB419FB19FC7E0700209994 /* MySourceData.m */,
 				AAE6455619FA680A003BD77A /* ViewController.h */,
 				AAE6455719FA680A003BD77A /* ViewController.m */,
+				AAE6457619FA6A28003BD77A /* MyTableViewController.h */,
+				AAE6457719FA6A28003BD77A /* MyTableViewController.m */,
+				AAD71E3B19FE8D2400081FF2 /* MyArgInputView.h */,
+				AAD71E3C19FE8D2400081FF2 /* MyArgInputView.m */,
+				AAE6457919FA6A45003BD77A /* MyCell.h */,
+				AAE6457A19FA6A45003BD77A /* MyCell.m */,
+				AAB419F719FA70BE00209994 /* MyButton.h */,
+				AAB419F819FA70BE00209994 /* MyButton.m */,
 				AAE6453F19FA680A003BD77A /* Supporting Files */,
 			);
 			path = DragEditor;
@@ -277,6 +302,11 @@
 				AAE6454519FA680A003BD77A /* main.m in Sources */,
 				AAE6454919FA680A003BD77A /* AppDelegate.m in Sources */,
 				AAE6455819FA680A003BD77A /* ViewController.m in Sources */,
+				AAE6457819FA6A28003BD77A /* MyTableViewController.m in Sources */,
+				AAE6457B19FA6A45003BD77A /* MyCell.m in Sources */,
+				AAB419F919FA70BE00209994 /* MyButton.m in Sources */,
+				AAB419FC19FC7E0700209994 /* MySourceData.m in Sources */,
+				AAD71E3D19FE8D2400081FF2 /* MyArgInputView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +497,7 @@
 				AAE6457219FA680A003BD77A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AAE6457319FA680A003BD77A /* Build configuration list for PBXNativeTarget "DragEditorTests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +506,7 @@
 				AAE6457519FA680A003BD77A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

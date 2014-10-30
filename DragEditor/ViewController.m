@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "MyButton.h"
+
 
 @interface ViewController ()
 
@@ -18,7 +20,27 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.width = self.view.frame.size.width;
+    self.height = self.view.frame.size.height;
+    
+    //AppDelegate
+    ad =  [[UIApplication sharedApplication] delegate];
+    
+    ad.rootView = self;
+    
+    ad.tblView.tableView.frame = CGRectMake(0, 0, self.width, self.height/2.0);
+    
+    [self.view addSubview:ad.tblView.tableView];
+    
+    [self.view addSubview:[[MyButton alloc]init:CGPointMake(70, 300) title:@"walk"]];
+    [self.view addSubview:[[MyButton alloc]init:CGPointMake(250, 300) title:@"turn"]];
+    [self.view addSubview:[[MyButton alloc]init:CGPointMake(70, 350) title:@"if"]];
+    [self.view addSubview:[[MyButton alloc]init:CGPointMake(250, 350) title:@"while"]];
+    
+  
+    
 }
+
 
 - (void)didReceiveMemoryWarning
 {
