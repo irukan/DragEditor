@@ -15,7 +15,7 @@
 -(CGRect)realFrame
 {
     //親ビュー取得
-    UITableView *parentView = (UITableView*)[self superview];
+    UITableView *parentView = ad.tblView.tableView;
     CGPoint offset = parentView.contentOffset;
     
     

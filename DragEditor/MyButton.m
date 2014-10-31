@@ -61,12 +61,15 @@
     CGPoint newPos = CGPointMake(self.center.x + deltaX, self.center.y + deltaY);
     self.center = newPos;
     
-    int cellIndex = [ad.tblView getCellIndexByPos:newPos];
-    
-    if(cellIndex != -1)
+    if (CGRectContainsPoint(ad.tblView.tableView.frame, newPos))
     {
-        [ad.tblView setHighLighted:cellIndex color:[UIColor cyanColor]];
+        int cellIndex = [ad.tblView getCellIndexByPos:newPos];
+        
+        if(cellIndex != -1)
+        {
+            [ad.tblView setHighLighted:cellIndex color:[UIColor cyanColor]];
 
+        }
     }
 }
 

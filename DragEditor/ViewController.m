@@ -32,10 +32,10 @@
     
     [self.view addSubview:ad.tblView.tableView];
     
-    [self.view addSubview:[[MyButton alloc]init:CGPointMake(70, 300) title:@"walk"]];
-    [self.view addSubview:[[MyButton alloc]init:CGPointMake(250, 300) title:@"turn"]];
-    [self.view addSubview:[[MyButton alloc]init:CGPointMake(70, 350) title:@"if"]];
-    [self.view addSubview:[[MyButton alloc]init:CGPointMake(250, 350) title:@"while"]];
+    [self.view addSubview:[[MyButton alloc]init:CGPointMake(70, self.height - 200) title:@"walk"]];
+    [self.view addSubview:[[MyButton alloc]init:CGPointMake(250, self.height - 200) title:@"turn"]];
+    [self.view addSubview:[[MyButton alloc]init:CGPointMake(70, self.height - 100) title:@"if"]];
+    [self.view addSubview:[[MyButton alloc]init:CGPointMake(250, self.height - 100) title:@"while"]];
     
   
     
