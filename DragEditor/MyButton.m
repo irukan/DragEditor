@@ -67,7 +67,7 @@
         
         if(cellIndex != -1)
         {
-            [ad.tblView setHighLighted:cellIndex color:[UIColor cyanColor]];
+            [ad.tblView setHighLighted:cellIndex color:[UIColor cyanColor] isScroll:false];
 
         }
     }

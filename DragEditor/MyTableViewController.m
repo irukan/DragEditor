@@ -22,7 +22,6 @@
     if (self) {
         sourceData = [[MySourceData alloc]init];
         
-        hilightedCellIndex = -1;
         // Custom initialization
     }
     return self;
@@ -203,26 +202,40 @@
     [self resetDataAndView];
 }
 
--(void)setHighLighted:(int)index color:(UIColor *)color_in
+-(void)setHighLighted:(int)index color:(UIColor*)color_in isScroll:(bool)isScroll_in
 {
-    //cellが変わったら、今までhighliteしていたのを色戻す
-    if(index != hilightedCellIndex)
+    //エラーチェック
+    if (index > [sourceData count] -1 )
     {
-        MyCell *temp = (MyCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:hilightedCellIndex inSection:0]];
-        temp.backgroundColor = [UIColor whiteColor];
+        // 前にHighLightを消すだけなので、表示の更新だけでよい
+        [self.tableView reloadData];
+        return;
     }
     
-    hilightedCellIndex = index;
+    // 前にHighLightを消すだけなので、表示の更新だけでよい
+    [self.tableView reloadData];
+    
     // cellの表示変更
     MyCell *temp = (MyCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
 
     temp.backgroundColor = color_in;
-
+ 
+    // Scrollする
+    if (isScroll_in)
+    {
+        NSIndexPath* indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    }
 }
 
 -(NSString*)getCmdByIndex:(int)index
 {
     return [sourceData getCmdByIndex:index];
+}
+
+-(NSMutableArray*)getSourceData
+{
+    return [sourceData getSourceData];
 }
 
 -(void)resetDataAndView

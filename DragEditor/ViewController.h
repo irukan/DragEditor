@@ -16,7 +16,7 @@
     AppDelegate *ad;
     
     MyTableViewController *tblView;
-  
+    
 }
 @property CGFloat width;
 @property CGFloat height;

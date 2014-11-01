@@ -38,7 +38,9 @@
 -(id)init
 {
     data = [NSMutableArray array];
-    [self addBlankLine:5];
+    [self addBlankLine:10];
+    
+    endPair = [NSMutableArray array];
     
     return [super init];
 }
@@ -121,6 +123,7 @@
 -(void)resetScopeLevel
 {
     int nowLevel = 0;
+    [endPair removeAllObjects];
     
     for (int i=0; i< [data count]; i++)
     {
@@ -130,11 +133,17 @@
         {
             [self setScopeLevel:i scopeLevel:nowLevel];
             nowLevel++;
+            
+            [endPair addObject:getCmd];
         }
-        else if([getCmd isEqualToString:@"end"])
+        //else if( ([getCmd rangeOfString:@"end"]).location != NSNotFound)
+        else if( [getCmd isEqualToString:@"end"] )
         {
             nowLevel--;
             [self setScopeLevel:i scopeLevel:nowLevel];
+            
+            [self setArg:i arg:[endPair lastObject]];
+            [endPair removeLastObject];
         }
         else
         {
@@ -143,5 +152,34 @@
     }
 }
 
+-(NSMutableArray*)getSourceData
+{
+
+    NSMutableArray *ret = [NSMutableArray array];
+    
+    for (int i=0; i< [data count]; i++)
+    {
+        NSString* getCmd = [self getCmdByIndex:i];
+        NSString* getArg = [self getArgByIndex:i];
+        
+        if( [getCmd isEqualToString:@"end"] )
+        {
+            // endwhile, endif にする
+            [ret addObject:[NSString stringWithFormat:@"%@%@", getCmd, getArg]];
+        }
+        else if( [getCmd isEqualToString:@""] )
+        {
+            //空行
+            [ret addObject:@""];
+        }
+        else
+        {
+            // walk , turn , while, if
+            [ret addObject:[NSString stringWithFormat:@"%@ %@", getCmd, getArg]];
+        }
+    }
+    
+    return ret;
+}
 
 @end

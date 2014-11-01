@@ -18,10 +18,12 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.width = self.view.frame.size.width;
     self.height = self.view.frame.size.height;
+    
     
     //AppDelegate
     ad =  [[UIApplication sharedApplication] delegate];
@@ -36,11 +38,26 @@
     [self.view addSubview:[[MyButton alloc]init:CGPointMake(250, self.height - 200) title:@"turn"]];
     [self.view addSubview:[[MyButton alloc]init:CGPointMake(70, self.height - 100) title:@"if"]];
     [self.view addSubview:[[MyButton alloc]init:CGPointMake(250, self.height - 100) title:@"while"]];
-    
-  
-    
+        
 }
 
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    //ad.tblView.tableView.transform = CGAffineTransformMakeScale(0.5, 0.5);
+    
+    NSMutableArray *getSource = [ad.tblView getSourceData];
+    
+    for(int i= 0; i<[getSource count];i++)
+    {
+        NSString *get = [getSource objectAtIndex:i];
+        NSLog((NSString*)([getSource objectAtIndex:i]));
+    }
+}
+
+-(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+}
 
 - (void)didReceiveMemoryWarning
 {

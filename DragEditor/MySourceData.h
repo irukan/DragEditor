@@ -12,6 +12,7 @@
 @interface MySourceData : NSObject
 {
     NSMutableArray *data;
+    NSMutableArray *endPair;
 }
 
 @property int count;
@@ -31,4 +32,6 @@
 -(int)getScopeLevelByIndex:(int)index;
 
 -(void)resetScopeLevel;
+
+-(NSMutableArray*)getSourceData;
 @end
