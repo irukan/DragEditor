@@ -18,9 +18,6 @@
     self = [super initWithFrame:CGRectMake(center_in.x, center_in.y, 100, 30)];
     if(self) {
         
-        //AppDelegate
-        ad =  [[UIApplication sharedApplication] delegate];
-        
         //position
         self.center = center_in;
         m_setPos = center_in;
@@ -46,6 +43,11 @@
     return self;
 }
 
+-(void)didMoveToSuperview
+{
+    rootView = [DDEditor getViewController:self];
+    tblView = [rootView getTable];
+}
 
 - (void) btn_TouchDragInside:(id)sender forEvent:(UIEvent *)event
 {
@@ -61,13 +63,13 @@
     CGPoint newPos = CGPointMake(self.center.x + deltaX, self.center.y + deltaY);
     self.center = newPos;
     
-    if (CGRectContainsPoint(ad.tblView.tableView.frame, newPos))
+    if (CGRectContainsPoint(tblView.tableView.frame, newPos))
     {
-        int cellIndex = [ad.tblView getCellIndexByPos:newPos];
+        int cellIndex = [tblView getCellIndexByPos:newPos];
         
         if(cellIndex != -1)
         {
-            [ad.tblView setHighLighted:cellIndex color:[UIColor cyanColor] isScroll:false];
+            [tblView setHighLighted:cellIndex color:[UIColor cyanColor] isScroll:false];
 
         }
     }
@@ -75,22 +77,22 @@
 
 - (void) btn_TouchUpInside:(id)sender forEvent:(UIEvent *)event
 {
-    int cellIndex = [ad.tblView getCellIndexByPos:self.center];
+    int cellIndex = [tblView getCellIndexByPos:self.center];
     
     if(cellIndex != -1)
     {
                 
         if ( ([m_title isEqualToString:@"while"]) || ([m_title isEqualToString:@"if"]) )
         {
-            [ad.tblView setDataByIndexWithEndBlock:cellIndex cmd:m_title arg:@""];
+            [tblView setDataByIndexWithEndBlock:cellIndex cmd:m_title arg:@""];
         }
         else
         {
-            [ad.tblView setDataByIndex:cellIndex cmd:m_title arg:@""];
+            [tblView setDataByIndex:cellIndex cmd:m_title arg:@""];
         }
         
-        MyArgInputView *argView = [[MyArgInputView alloc]initWithType:m_title index:cellIndex];
-        [ad.rootView.view addSubview:argView];
+        MyArgInputView *argView = [[MyArgInputView alloc]initWithType:m_title index:cellIndex size:rootView.view.frame.size];
+        [rootView.view addSubview:argView];
 
     }
     

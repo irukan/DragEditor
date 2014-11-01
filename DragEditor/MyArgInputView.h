@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AppDelegate.h"
+#import "DDEditor.h"
 
 enum Enum_cmdType {
     Type_walk = 0,
@@ -19,11 +19,13 @@ typedef enum Enum_cmdType cmdType ;
 
 @interface MyArgInputView : UIView
 {
-    AppDelegate *ad;
     cmdType m_type;
     int m_cellIndex;
+    
+    DDEditor *rootView;
+    MyTableViewController *tblView;
 }
 
--(id)initWithType:(NSString*)cmd index:(int)index_in;
+-(id)initWithType:(NSString*)cmd index:(int)index_in size:(CGSize)size_in;
 
 @end

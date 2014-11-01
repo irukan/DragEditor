@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA1EC2111A051BAF00253297 /* DDEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1EC2101A051BAF00253297 /* DDEditor.m */; };
 		AAB419F919FA70BE00209994 /* MyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB419F819FA70BE00209994 /* MyButton.m */; };
 		AAB419FC19FC7E0700209994 /* MySourceData.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB419FB19FC7E0700209994 /* MySourceData.m */; };
 		AAD71E3D19FE8D2400081FF2 /* MyArgInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD71E3C19FE8D2400081FF2 /* MyArgInputView.m */; };
@@ -21,7 +22,6 @@
 		AAE6454F19FA680A003BD77A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE6454E19FA680A003BD77A /* Default-568h@2x.png */; };
 		AAE6455219FA680A003BD77A /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAE6455019FA680A003BD77A /* MainStoryboard_iPhone.storyboard */; };
 		AAE6455519FA680A003BD77A /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAE6455319FA680A003BD77A /* MainStoryboard_iPad.storyboard */; };
-		AAE6455819FA680A003BD77A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE6455719FA680A003BD77A /* ViewController.m */; };
 		AAE6456019FA680A003BD77A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE6455F19FA680A003BD77A /* SenTestingKit.framework */; };
 		AAE6456119FA680A003BD77A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE6453819FA680A003BD77A /* UIKit.framework */; };
 		AAE6456219FA680A003BD77A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE6453A19FA680A003BD77A /* Foundation.framework */; };
@@ -42,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA1EC20F1A051BAF00253297 /* DDEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDEditor.h; sourceTree = "<group>"; };
+		AA1EC2101A051BAF00253297 /* DDEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDEditor.m; sourceTree = "<group>"; };
 		AAB419F719FA70BE00209994 /* MyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyButton.h; sourceTree = "<group>"; };
 		AAB419F819FA70BE00209994 /* MyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyButton.m; sourceTree = "<group>"; };
 		AAB419FA19FC7E0700209994 /* MySourceData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySourceData.h; sourceTree = "<group>"; };
@@ -63,8 +65,6 @@
 		AAE6454E19FA680A003BD77A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		AAE6455119FA680A003BD77A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		AAE6455419FA680A003BD77A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		AAE6455619FA680A003BD77A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		AAE6455719FA680A003BD77A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		AAE6455E19FA680A003BD77A /* DragEditorTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DragEditorTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE6455F19FA680A003BD77A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		AAE6456719FA680A003BD77A /* DragEditorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DragEditorTests-Info.plist"; sourceTree = "<group>"; };
@@ -138,10 +138,10 @@
 				AAE6454819FA680A003BD77A /* AppDelegate.m */,
 				AAE6455019FA680A003BD77A /* MainStoryboard_iPhone.storyboard */,
 				AAE6455319FA680A003BD77A /* MainStoryboard_iPad.storyboard */,
+				AA1EC20F1A051BAF00253297 /* DDEditor.h */,
+				AA1EC2101A051BAF00253297 /* DDEditor.m */,
 				AAB419FA19FC7E0700209994 /* MySourceData.h */,
 				AAB419FB19FC7E0700209994 /* MySourceData.m */,
-				AAE6455619FA680A003BD77A /* ViewController.h */,
-				AAE6455719FA680A003BD77A /* ViewController.m */,
 				AAE6457619FA6A28003BD77A /* MyTableViewController.h */,
 				AAE6457719FA6A28003BD77A /* MyTableViewController.m */,
 				AAD71E3B19FE8D2400081FF2 /* MyArgInputView.h */,
@@ -225,7 +225,7 @@
 			name = DragEditorTests;
 			productName = DragEditorTests;
 			productReference = AAE6455E19FA680A003BD77A /* DragEditorTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -299,9 +299,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA1EC2111A051BAF00253297 /* DDEditor.m in Sources */,
 				AAE6454519FA680A003BD77A /* main.m in Sources */,
 				AAE6454919FA680A003BD77A /* AppDelegate.m in Sources */,
-				AAE6455819FA680A003BD77A /* ViewController.m in Sources */,
 				AAE6457819FA6A28003BD77A /* MyTableViewController.m in Sources */,
 				AAE6457B19FA6A45003BD77A /* MyCell.m in Sources */,
 				AAB419F919FA70BE00209994 /* MyButton.m in Sources */,

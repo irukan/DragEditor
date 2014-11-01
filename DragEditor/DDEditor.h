@@ -1,21 +1,21 @@
 //
-//  ViewController.h
+//  DDEditor.h
 //  DragEditor
 //
-//  Created by kayama on 14/10/24.
+//  Created by kayama on 2014/11/01.
 //  Copyright (c) 2014年 kayama. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "MyTableViewController.h"
 
-
-@interface ViewController : UIViewController
+@interface DDEditor : UIViewController
 {
     MyTableViewController *tblView;
 }
 
-+(ViewController*)getViewController:(UIView*)self_in;
+-(id)initWithFrame:(CGRect)frame;
++(DDEditor*)getViewController:(UIView*)self_in;
 -(MyTableViewController*)getTable;
 
 @property CGFloat width;
@@ -23,4 +23,3 @@
 
 
 @end
-

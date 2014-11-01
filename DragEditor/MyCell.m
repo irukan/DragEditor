@@ -14,10 +14,8 @@
 @synthesize realFrame;
 -(CGRect)realFrame
 {
-    //親ビュー取得
-    UITableView *parentView = ad.tblView.tableView;
-    CGPoint offset = parentView.contentOffset;
     
+    CGPoint offset = tblView.tableView.contentOffset;
     
     CGRect ret = self.frame;
     ret.origin = CGPointMake(ret.origin.x - offset.x,
@@ -31,13 +29,8 @@
     
     if(self)
     {
-        
-        //AppDelegate
-        ad =  [[UIApplication sharedApplication] delegate];
         m_index = index;
         m_indentLevel = indetLevel_in;
-        
-       // self.textLabel.text = [NSString stringWithFormat:@"%i",m_index];
     }
     
     return  self;
@@ -51,6 +44,12 @@
         // Initialization code
     }
     return self;
+}
+
+-(void)didMoveToSuperview
+{
+    rootView = [DDEditor getViewController:self];
+    tblView = [rootView getTable];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -89,13 +88,13 @@
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
    // self.backgroundColor = [UIColor whiteColor];
-    NSString *getCmd = [ad.tblView getCmdByIndex:m_index];
+    NSString *getCmd = [tblView getCmdByIndex:m_index];
     
     if ( !([getCmd isEqualToString:@""]) && !([getCmd isEqualToString:@"end"]))
     {
         
-        MyArgInputView *argView = [[MyArgInputView alloc]initWithType:getCmd index:m_index];
-        [ad.rootView.view addSubview:argView];
+        MyArgInputView *argView = [[MyArgInputView alloc]initWithType:getCmd index:m_index size:rootView.view.frame.size];
+        [rootView.view addSubview:argView];
     }
 
 }

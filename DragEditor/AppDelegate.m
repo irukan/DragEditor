@@ -14,7 +14,13 @@
 {
     // Override point for customization after application launch.
     
-    self.tblView = [[MyTableViewController alloc]initWithStyle:UITableViewStylePlain];
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    ddEdit = [[DDEditor alloc]initWithFrame:self.window.frame];
+
+    
+    self.window.rootViewController = ddEdit;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 							

@@ -19,16 +19,14 @@
     return self;
 }
 
--(id)initWithType:(NSString*)cmd index:(int)index_in
+-(id)initWithType:(NSString*)cmd index:(int)index_in size:(CGSize)size_in;
 {
     self = [super init];
     
-    //AppDelegate
-    ad =  [[UIApplication sharedApplication] delegate];
-
     //はじめは、隠れた位置(右)に配置
-    self.frame = CGRectMake(ad.rootView.view.frame.size.width, 0,
-                            ad.rootView.view.frame.size.width, ad.rootView.view.frame.size.height);
+    self.frame = CGRectMake(size_in.width, 0,
+                            size_in.width, size_in.height);
+
     self.backgroundColor = [UIColor whiteColor];
     
     if(self)
@@ -69,9 +67,13 @@
     return self;
 }
 
+
 //表示されるとき
 -(void)didMoveToSuperview
 {
+    rootView = [DDEditor getViewController:self];
+    tblView = [rootView getTable];
+    
     [UIView animateWithDuration:0.2f
                      animations:^{
                          self.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
@@ -99,10 +101,10 @@
 {
     for(int i=0;i<10;i++)
     {
-        UIButton *tmp = [[UIButton alloc]initWithFrame:CGRectMake(ad.rootView.view.frame.size.width/2.0, 50 + 40*i, 50, 30)];
+        UIButton *tmp = [[UIButton alloc]initWithFrame:CGRectMake(rootView.view.frame.size.width/2.0, 50 + 40*i, 50, 30)];
         tmp.tag = i + 1;
         tmp.backgroundColor = [UIColor greenColor];
-        [tmp setTitle:[NSString stringWithFormat:@"%d", tmp.tag] forState:UIControlStateNormal];
+        [tmp setTitle:[NSString stringWithFormat:@"%ld", (long)tmp.tag] forState:UIControlStateNormal];
         [tmp setTintColor:[UIColor blackColor]];
         [tmp addTarget:self action:@selector(btn_TouchWalkBtn:) forControlEvents:UIControlEventTouchDown];
         
@@ -112,7 +114,7 @@
 
 - (void) btn_TouchWalkBtn:(UIButton*)btn
 {
-    [ad.tblView setDataByIndex:m_cellIndex cmd:@"" arg:[NSString stringWithFormat:@"%d", btn.tag]];
+    [tblView setDataByIndex:m_cellIndex cmd:@"" arg:[NSString stringWithFormat:@"%ld", (long)btn.tag]];
     
     [self removeFromSuperview];
 }
@@ -123,7 +125,7 @@
     
     for(int i=0;i<4;i++)
     {
-        UIButton *tmp = [[UIButton alloc]initWithFrame:CGRectMake(ad.rootView.view.frame.size.width/2.0, 50 + 40*i, 50, 30)];
+        UIButton *tmp = [[UIButton alloc]initWithFrame:CGRectMake(rootView.view.frame.size.width/2.0, 50 + 40*i, 50, 30)];
         tmp.tag = i;
         tmp.backgroundColor = [UIColor greenColor];
         [tmp setTitle:[strAr objectAtIndex:i] forState:UIControlStateNormal];
@@ -138,7 +140,7 @@
 {
     NSArray *strAr = @[@"→", @"↑", @"↓", @"←"];
     
-    [ad.tblView setDataByIndex:m_cellIndex cmd:@"" arg:[strAr objectAtIndex:btn.tag]];
+    [tblView setDataByIndex:m_cellIndex cmd:@"" arg:[strAr objectAtIndex:btn.tag]];
     
     [self removeFromSuperview];
 }
@@ -149,7 +151,7 @@
     
     for(int i=0;i<3;i++)
     {
-        UIButton *tmp = [[UIButton alloc]initWithFrame:CGRectMake(ad.rootView.view.frame.size.width/2.0, 50 + 40*i, 150, 30)];
+        UIButton *tmp = [[UIButton alloc]initWithFrame:CGRectMake(rootView.view.frame.size.width/2.0, 50 + 40*i, 150, 30)];
         tmp.tag = i;
         tmp.backgroundColor = [UIColor greenColor];
         [tmp setTitle:[strAr objectAtIndex:i] forState:UIControlStateNormal];
@@ -164,18 +166,18 @@
 {
      NSArray *strAr = @[@"Tree", @"Wall", @"House"];
     
-    [ad.tblView setDataByIndex:m_cellIndex cmd:@"" arg:[strAr objectAtIndex:btn.tag]];
+    [tblView setDataByIndex:m_cellIndex cmd:@"" arg:[strAr objectAtIndex:btn.tag]];
     
     [self removeFromSuperview];
 }
 
 -(void) viewFor_TypeWhile
 {
-    NSArray *strAr = @[@"until Tree", @"until Wall", @"until House"];
+    NSArray *strAr = @[@"Tree", @"Wall", @"House"];
     
     for(int i=0;i<3;i++)
     {
-        UIButton *tmp = [[UIButton alloc]initWithFrame:CGRectMake(ad.rootView.view.frame.size.width/2.0, 50 + 40*i, 150, 30)];
+        UIButton *tmp = [[UIButton alloc]initWithFrame:CGRectMake(rootView.view.frame.size.width/2.0, 50 + 40*i, 150, 30)];
         tmp.tag = i;
         tmp.backgroundColor = [UIColor greenColor];
         [tmp setTitle:[strAr objectAtIndex:i] forState:UIControlStateNormal];
@@ -188,9 +190,9 @@
 
 - (void) btn_TouchWhileBtn:(UIButton*)btn
 {
-    NSArray *strAr =  @[@"until Tree", @"until Wall", @"until House"];
+    NSArray *strAr =  @[@"Tree", @"Wall", @"House"];
     
-    [ad.tblView setDataByIndex:m_cellIndex cmd:@"" arg:[strAr objectAtIndex:btn.tag]];
+    [tblView setDataByIndex:m_cellIndex cmd:@"" arg:[strAr objectAtIndex:btn.tag]];
     
     [self removeFromSuperview];
 }

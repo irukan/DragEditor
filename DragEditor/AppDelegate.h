@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MyTableViewController.h"
+#import "DDEditor.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+{
+    DDEditor *ddEdit;
+}
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) MyTableViewController *tblView;
-@property (strong, nonatomic) UIViewController *rootView;
 @end

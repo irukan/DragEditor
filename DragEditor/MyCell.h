@@ -7,13 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AppDelegate.h"
+#import "DDEditor.h"
 
 @interface MyCell : UITableViewCell
 {
-    AppDelegate *ad;
+ 
     int m_index;
     int m_indentLevel;
+    
+    DDEditor *rootView;
+    MyTableViewController *tblView;
 }
 
 @property CGRect realFrame;
