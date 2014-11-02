@@ -17,7 +17,9 @@
 -(id)initWithFrame:(CGRect)frame;
 +(DDEditor*)getViewController:(UIView*)self_in;
 -(MyTableViewController*)getTable;
+-(void)argInputView:(NSString*)cmdType cellIndex:(int)cellIndex_in;
 
+@property (strong,readonly)MyTableViewController* tblView;
 @property CGFloat width;
 @property CGFloat height;
 

@@ -8,6 +8,7 @@
 
 #import "DDEditor.h"
 #import "MyButton.h"
+#import "MyArgInputView.h"
 
 @interface DDEditor ()
 
@@ -15,18 +16,24 @@
 
 @implementation DDEditor
 
+@synthesize tblView;
+
 -(id)initWithFrame:(CGRect)frame
 {
     self = [super init];
     
     if (self)
     {
-        self.view.frame = frame;
+        self.width = frame.size.width;
+        self.height = frame.size.height;
+
         self.view.backgroundColor = [UIColor whiteColor];
     }
     
     return self;
 }
+
+//DDEditorのUIViewContorllerを取得する
 +(DDEditor*)getViewController:(UIView*)self_in
 {
     UIResponder *responder = self_in;
@@ -42,19 +49,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.width = self.view.frame.size.width;
-    self.height = self.view.frame.size.height;
-    
     
     tblView = [[MyTableViewController alloc]initWithStyle:UITableViewStylePlain];
-    tblView.tableView.frame = CGRectMake(0, 0, self.width, self.height/2.0);
+    tblView.tableView.frame = CGRectMake(0, 0, self.width, self.height/1.3);
     
     [self.view addSubview:tblView.tableView];
     
-    [self.view addSubview:[[MyButton alloc]init:CGPointMake(70, self.height - 200) title:@"walk"]];
-    [self.view addSubview:[[MyButton alloc]init:CGPointMake(250, self.height - 200) title:@"turn"]];
-    [self.view addSubview:[[MyButton alloc]init:CGPointMake(70, self.height - 100) title:@"if"]];
-    [self.view addSubview:[[MyButton alloc]init:CGPointMake(250, self.height - 100) title:@"while"]];
+    //後でGeneratorクラス作る
+    [self.view addSubview:[[MyButton alloc]init:CGPointMake(self.width*0.25, self.height - 100 ) title:@"walk"]];
+    [self.view addSubview:[[MyButton alloc]init:CGPointMake(self.width*0.75, self.height - 100 ) title:@"turn"]];
+    [self.view addSubview:[[MyButton alloc]init:CGPointMake(self.width*0.25, self.height - 50 ) title:@"if"]];
+    [self.view addSubview:[[MyButton alloc]init:CGPointMake(self.width*0.75, self.height - 50 ) title:@"while"]];
     
 
 }
@@ -63,6 +68,13 @@
 -(MyTableViewController*)getTable
 {
     return tblView;
+}
+
+
+-(void)argInputView:(NSString*)cmdType cellIndex:(int)cellIndex_in
+{
+    MyArgInputView *argView = [[MyArgInputView alloc]initWithType:cmdType index:cellIndex_in size:self.view.frame.size];
+    [self.view addSubview:argView];
 }
 
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

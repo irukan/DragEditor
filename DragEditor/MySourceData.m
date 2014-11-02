@@ -32,7 +32,7 @@
 
 -(int)count
 {
-    return [data count];
+    return (int)([data count]);
 }
 
 -(id)init

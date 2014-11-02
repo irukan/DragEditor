@@ -7,11 +7,9 @@
 //
 
 #import "MyCell.h"
-#import "MyArgInputView.h"
 
 @implementation MyCell
 
-@synthesize realFrame;
 -(CGRect)realFrame
 {
     
@@ -83,18 +81,20 @@
 
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+   // [tblView setHighLighted:m_index color:[UIColor grayColor] isScroll:false];
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-   // self.backgroundColor = [UIColor whiteColor];
+    
+    //[tblView setHighLighted:m_index color:[UIColor whiteColor] isScroll:false];
+    
     NSString *getCmd = [tblView getCmdByIndex:m_index];
     
     if ( !([getCmd isEqualToString:@""]) && !([getCmd isEqualToString:@"end"]))
     {
-        
-        MyArgInputView *argView = [[MyArgInputView alloc]initWithType:getCmd index:m_index size:rootView.view.frame.size];
-        [rootView.view addSubview:argView];
+        // ArgInputWindow
+        [rootView argInputView:getCmd cellIndex:m_index];
     }
 
 }

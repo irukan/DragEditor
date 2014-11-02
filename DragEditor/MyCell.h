@@ -19,7 +19,7 @@
     MyTableViewController *tblView;
 }
 
-@property CGRect realFrame;
+@property (readonly)CGRect realFrame;
 -(int)getIndex;
 -(int)getIndexLevel;
 -(id) init:(int)index indentLevel:(int)indetLevel_in;

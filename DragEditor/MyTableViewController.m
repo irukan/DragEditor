@@ -71,11 +71,11 @@
     if (!cell) { // yes
         // セルを作成
         
-        cell = [[MyCell alloc]init:indexPath.row indentLevel:[sourceData getScopeLevelByIndex:indexPath.row]];
+        cell = [[MyCell alloc]init:(int)indexPath.row indentLevel:[sourceData getScopeLevelByIndex:(int)indexPath.row]];
     }
     
     // Configure the cell...
-    [cell setData:[sourceData getCmdByIndex:indexPath.row] arg:[sourceData getArgByIndex:indexPath.row]];
+    [cell setData:[sourceData getCmdByIndex:(int)indexPath.row] arg:[sourceData getArgByIndex:(int)indexPath.row]];
     
 
     return cell;
@@ -110,7 +110,7 @@
 {
     if(fromIndexPath.section == toIndexPath.section) { // 移動元と移動先は同じセクションです。
         if(sourceData && toIndexPath.row < sourceData.count) {
-            [sourceData exchangeData:fromIndexPath.row toIndex:toIndexPath.row];
+            [sourceData exchangeData:(int)fromIndexPath.row toIndex:(int)toIndexPath.row];
             
             //更新
             [self resetDataAndView];

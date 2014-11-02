@@ -15,7 +15,7 @@
     NSMutableArray *endPair;
 }
 
-@property int count;
+@property (readonly)int count;
 
 -(id) init;
 -(void)exchangeData:(int)fromIndex toIndex:(int)toIndex_in;

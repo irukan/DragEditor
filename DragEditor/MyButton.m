@@ -7,8 +7,6 @@
 //
 
 #import "MyButton.h"
-#import "MyCell.h"
-#import "MyArgInputView.h"
 #import <QuartzCore/QuartzCore.h>
 @implementation MyButton
 
@@ -91,8 +89,8 @@
             [tblView setDataByIndex:cellIndex cmd:m_title arg:@""];
         }
         
-        MyArgInputView *argView = [[MyArgInputView alloc]initWithType:m_title index:cellIndex size:rootView.view.frame.size];
-        [rootView.view addSubview:argView];
+        // ArgInputWindow
+        [rootView argInputView:m_title cellIndex:cellIndex];
 
     }
     
